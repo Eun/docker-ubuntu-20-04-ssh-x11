@@ -10,10 +10,10 @@ RUN apt-get update && \
     apt-get install -y openssh-server && \
     passwd -d root && \
     sed -ri 's/^\s*(PermitRootLogin)/#\1/'                   /etc/ssh/sshd_config && \
-    echo "PermitRootLogin yes"                           >> /etc/ssh/sshd_config && \
+    echo "PermitRootLogin yes"                            >> /etc/ssh/sshd_config && \
 
     sed -ri 's/^\s*(X11Forwarding)/#\1/'                     /etc/ssh/sshd_config && \
-    echo "X11Forwarding yes"                             >> /etc/ssh/sshd_config && \
+    echo "X11Forwarding yes"                              >> /etc/ssh/sshd_config && \
 
     sed -ri 's/^\s*(X11DisplayOffset)/#\1/'                 /etc/ssh/sshd_config && \
     echo "X11DisplayOffset 10"                           >> /etc/ssh/sshd_config && \
@@ -35,7 +35,8 @@ RUN apt-get update && \
 
     sed -ri 's/^\s*(Compression)/#\1/'                      /etc/ssh/sshd_config && \
     echo "Compression no"                                >> /etc/ssh/sshd_config && \
-    mkdir /var/run/sshd
+    mkdir /var/run/sshd                                                          && \
+    apt-get clean
 
 
 EXPOSE 22
